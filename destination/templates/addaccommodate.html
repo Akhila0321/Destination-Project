@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2 class="text-center text-light mb-3 mt-3">Add Accommodations...</h2>
+<div class="container mx-auto text-dark">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" name="n" placeholder="Enter the accommodation name">
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label">Description</label>
+     <input type="text" class="form-control" name="c" placeholder="Enter the description">
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Price per night</label>
+    <input type="text" class="form-control" name="p" placeholder="Enter the price">
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Image</label>
+    <input type="file" class="form-control" name="i">
+    </div>
+     <div class="mb-3">
+        <label class="form-label">Destiny</label>
+        <select name="d" id="destiny" class="form-select">
+            <option value="">Select destiny</option>
+            {% for i in links %}
+                <option value="{{ i.country }}">{{ i.country }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-5 text-center">
+    <input type="submit" class="btn btn-danger" value="ADD STAY">
+    </div>
+</form>
+    <div class="mb-5">
+         <h3 class="text-light fw-bold">For add room images and facilities...</h3>
+    <a href = "{% url 'admin:index' %}"><input type="submit" class="btn btn-danger" value="ADD ROOMS"></a>
+    </div>
+    </div>
+{% endblock %}

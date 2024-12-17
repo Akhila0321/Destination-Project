@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <h1 class="text-center text-dark mt-4 mb-4">Submit your Review</h1>
+    <form method="POST" class="text-center mb-5">
+        {% csrf_token %}
+
+        <div class="form-group text-center">
+            <label for="rating">Rating (1-5 Stars)</label>
+            <div class="star-rating " style="color:gold;">
+                {% for i in stars %}
+                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}"
+                           {% if form.rating.value == i %}
+                           checked{% endif %} />
+                    <label for="star{{ i }}" title="{{ i }} stars">&#9733;</label>  <!-- Star icon -->
+                {% endfor %}
+            </div>
+        </div>
+        {{ form.review_text }}  <!-- Render review text field -->
+        <div class="mb-5 mt-3">
+        <button type="submit" class="btn btn-danger text-center">Submit Review</button>
+        </div>
+    </form>
+{% endblock %}

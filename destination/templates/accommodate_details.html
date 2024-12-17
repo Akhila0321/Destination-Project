@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5 mx-auto text-center text-dark">
+    <h2 class="text-danger mb-3">{{ accommodation.name }}</h2>
+    <p class="lead mb-3 text-dark" style="font-family:Raleway;line-height:1.5;text-align:justify">{{ accommodation.description }}</p>
+    <h4>Price per night: ₹{{ accommodation.price_per_night }}(includes food)</h4>
+
+    <!-- Room Images and Facilities Carousel -->
+    <div id="roomCarousel" class="carousel slide mt-5" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for image in room_images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <!-- Room Image -->
+                <img src="{{ image.image.url }}" class="d-block w-100" alt="Room image for {{ accommodation.name }}" height="400px">
+
+                <!-- Facilities for Each Room Image -->
+                <div class="carousel-caption d-none d-md-block  bg-opacity-50 rounded">
+                    <h5>Facilities included</h5>
+                    <ul>
+                        {% for facility in image.facilities.all %}
+                        <li>{{ facility.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Controls -->
+        <a class="carousel-control-prev" href="#roomCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#roomCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

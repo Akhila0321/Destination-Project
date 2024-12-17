@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2 class="text-center mb-3 mt-5 text-dark">Book Your Dream Destination !!!</h2>
+<div class="container d-flex justify-content-center align-items-center text-dark mt-5 mb-5">
+<form method="POST" class="text-dark w-50 p-5 bg-light rounded shadow">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label class="form-label"></label>
+        <select name="d" id="destiny" class="form-select">
+            <option value="">Select Your Destiny</option>
+            {% for i in links %}
+                <option value="{{ i.country }}">{{ i.country }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-4">
+        <label class="form-label"></label>
+        <select name="ac" id="accommodation" class="form-select">
+            <option value="">Select Your Accommodation</option>
+            {% for i in link %}
+                <option value="{{ i.name }}" data-destiny="{{ i.destiny_id }}">{{ i.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Check In</label>
+        <input type="date" class="form-control" name="k">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Check Out</label>
+        <input type="date" class="form-control" name="o">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Number of Guests</label>
+        <input type="number" class="form-control" name="g">
+    </div>
+    <div class="mb-4 text-center">
+    <input type="submit" class="btn btn-danger" value="BOOK NOW">
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4 text-dark">Your Bookings</h2>
+    {% if bookings %}
+    <table class="table table-bordered table-light">
+        <thead>
+            <tr class="text-dark">
+                <th>Destination</th>
+                <th>Accommodation</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+                <th>No of Guests</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr class="text-dark">
+                <td>{{ booking.destiny.country }}</td>
+                <td>{{ booking.accommodation.name }}</td>
+                <td>{{ booking.check_in }}</td>
+                <td>{{ booking.check_out }}</td>
+                <td>{{ booking.number_of_guests }}</td>
+                <td>
+                    <!-- Delete button for each booking -->
+                    <a href="{% url 'schedule:delete' booking.id %}" class="btn btn-danger btn-sm text-center">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-end mt-4 mb-4 text-dark fw-bold">
+        <table class="table table-bordered border-1 shadow table-light">
+            <tr>
+                <th colspan="4" class="text-center fs-5">Booking Price</th>
+            </tr>
+            <tr class="text-center">
+                <td colspan="p-4"><b><strong>Total Price for All Bookings: </strong> {{ total_price }}</b></td>
+                 </tr>
+            </table>
+            </div>
+    {% else %}
+    <p class="text-center text-dark mb-5">No bookings found.</p>
+    {% endif %}
+    <div class="mb-5 text-center">
+    <a href="{% url 'schedule:confirm' %}" class="btn btn-danger">Payments Here</a>
+        <a href="{% url 'reviews:submit_review' %}" class="btn btn-danger">Add Review</a>
+        </div>
+</div>
+{% endblock %}

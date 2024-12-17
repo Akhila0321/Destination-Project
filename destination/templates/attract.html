@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row mt-3">
+    <div class="col-12">
+    <img src="{{dest.image.url}}" height="350px" width="100%">
+</div></div>
+<div class="row mt-3 px-3" style="margin-bottom:50px;">
+    <div class="col-12">
+        <h3 class="text-center fw-bold mt-3 mb-3 text-danger"><u>{{dest.country}}</u></h3>
+        <p style="text-align:justify;line-height:2.0;font-size:18px;font-family:Lucida Handwriting;" class="text-center text-light">{{dest.description}}</p>
+        <p class="text-center text-light" style="font-family:Copperplate;font-size:20px;">Min.Price Range: {{dest.price_range}}</p>
+    </div>
+     </div>
+<div class="container mb-5">
+    <div class="row">
+        {% for i in attract %}
+        <div class="col-sm-3 p-2">
+            <div class="card mx-auto p-2" style="width: 20rem;">
+  <img src="{{i.image.url}}" class="card-img-top" alt="..." height="250px" width="250px">
+  <div class="card-body text-center text-dark fw-bold">
+    <h5 class="card-title text-danger fw-bold">{{i.place}}</h5>
+    <a href="{% url 'tours:details' i.id %}" class="btn btn-danger">Details</a>
+  </div>
+</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

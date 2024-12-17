@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2 class="text-center mt-4 mb-4 text-light">Add Destinations...</h2>
+<div class="container mx-auto text-dark">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+    <label class="form-label">Country</label>
+    <input type="text" class="form-control" name="c" placeholder="Enter the country name">
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label">Description</label>
+     <input type="text" class="form-control" name="d" placeholder="Enter the description">
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Price_range</label>
+     <input type="text" class="form-control" name="p" placeholder="Enter the price range">
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Image</label>
+    <input type="file" class="form-control" name="i">
+    </div>
+    <div class="mb-5 text-center">
+    <input type="submit" class="btn btn-danger" value="ADD DESTINY">
+    </div>
+</form>
+    <div class="mb-5">
+        <h3 class="text-light fw-bold">For add more spots in destination...</h3>
+    <a href = "{% url 'admin:index' %}"><input type="submit" class="btn btn-danger" value="ADD SPOTS"></a>
+    </div>
+    </div>
+{% endblock %}

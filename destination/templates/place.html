@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h2 class="text-center fw-bold mt-3 mb-4 text-danger">Choose Your Destination...</h2>
+    <div class="row">
+        {% for i in dest %}
+        <div class="col-sm-4 p-5">
+            <div class="card" style="width: 20rem;">
+  <img src="{{i.image.url}}" class="card-img-top" alt="..." height="250px" width="250px">
+  <div class="card-body text-center text-danger fw-bold">
+    <h5 class="card-title" style="font-size:25px;font-weight:bold;">{{i.country}}</h5>
+
+    <a href="{% url 'tours:attracts' i.id %}" class="btn btn-danger mt-3 mr-4">Spots</a>
+      <a href="{% url 'tours:stay' i.id %}" class="btn btn-danger mt-3 mr-4">Stay</a>
+
+  </div>
+</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
